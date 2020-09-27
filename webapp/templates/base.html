@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet" />
+</head>
+<body>
+<div class="grid-box">
+    <div class="header">   
+
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <h1 class="title">COMPANY LOGO</h1>
+                    <p class="slogan">Agriculture Product</p>
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li><a href="{% url 'homepage' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-book"></i> about company</a></li>
+                        <li><a href="{% url 'loadform' %}">+ Add Employee </a></li>
+                        <li><a href="{% url 'show-employee' %}"><i class="fas fa-users"></i> Show All Employee</a></li>
+                        <li><a href="{% url 'signout' %}"><i class="fas fa-edit"></i> SignOut</a></li>
+                    </ul>
+                </div>
+                <div class="bars">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            <p>
+            <i class="fas fa-copyright"></i> M.L.C. L.T.D 2020.
+        </p>
+        <span>
+            All the Agriculture products we produce.
+        </span>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+</div>
+</body>
+</html>

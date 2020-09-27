@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="body-part">
+    <div class="content">
+        <div class="container">
+            <div class="heading">
+                <h1>A FARMING COMPANY</h1>
+                <p>All the agricultural products</p>
+            </div>
+            <div class="content-wrapper">   
+                <div class="heading big-head">
+                    <h1><i class="fas fa-user"></i>Update Employee Info</h1>
+                    <p>
+                        If you have new Employee, You can add from here filling the form below and save it to your database.
+                    </p>
+                </div>
+                <div class="flex-item">
+
+                    <h4>New User ?  <i class="fas fa-user"></i></h4>
+                    
+                    <a href="{% url 'loadform' %}" class='btn'>Record Now +</a>
+                </div>
+                <div class="edit">
+                    <form method="POST" action="/update/{{ employee.id }}">
+                       {% csrf_token %}
+                       <div>
+                           <label for="eid"><i class="fas fa-id-badge"></i> ID Number:</label>
+                           <div class="eid">	<input type="number" name="eid" value="{{ employee.eid }}" required="required" /></div>
+                       </div><div>
+                           <label for="ename"><i class="fas fa-user-circle"></i>Full Name:</label>
+                           <div class="ename"><input type="text" name="ename" value="{{ employee.ename }}"/></div></div>
+                           <div>
+
+                               <label for="eemail"><i class="fas fa-calendar"></i>Joined Date:<span class='i-text'> [ E.g 2020-10-20 ]</span> </label>
+                               <div class="eemail"><input type="text" name="ejoin" value="{{ employee.ejoin }}"/></div>
+                           </div><div>
+                               <label for="econtact"><i class="fas fa-address-book"></i>Contact:</label>
+                               <div class="econtact"><input type="number" name="econtact" value="{{ employee.econtact }}"/></div>
+                           </div><div>
+                               <label for="eage">Age:</label>
+                               <div class="eage"><input type="number" name="eage" value="{{ employee.eage }}"/></div>
+                           </div><br/>
+                           <div class="add-button"><button type="submit">Update Now <i class="fas fa-arrow-up"></i></button></div>
+
+                       </form>
+
+                       <div class=""><a href="{% url 'loadform' %}" class="et">Record New + </a></div>
+                       <div class=""><a href="{% url 'homepage' %}" class="gt">Goto Dashboard <i class="fas fa-home"></i></a></div>
+
+                   </div>
+               </div>
+           </div>
+       </div>
+       {% endblock %}
+
+
+
+
+

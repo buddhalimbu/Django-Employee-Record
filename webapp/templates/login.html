@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'style/login.css' %}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="login-wrapper">
+		<div class="login-form-wrapper">
+			<div class="login-box box-shadow">
+				<div class="login-title">
+					<h3>Login</h3>
+				</div>
+				<div class="login-form">
+					<form action="{% url 'signin' %}" method="POST">
+						{% csrf_token %}
+						{% if messages %}
+						{% for i in messages %}
+						<p class="messages"><i class="fas fa-user"></i> 
+							{{i}}
+						</p>
+						{% endfor %}
+						{% endif %}
+						<div><input type="text" name="username" placeholder="username.."/></div>
+						<div><input type="password" name="password"/></div>
+						<button type="submit">Sign In</button>
+					</form>
+				</div>
+				
+				<div class="new-user">
+					<div class="nw-link">
+						<p> Made on Django</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+

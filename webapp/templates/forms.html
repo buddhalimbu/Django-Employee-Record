@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="body-part">
+  
+    <div class="content">
+        <div class="container">
+            <div class="heading">
+                <h1>A FARMING COMPANY</h1>
+                <p>All the agricultural products</p>
+            </div>
+            <div class="content-wrapper">   
+                <div class="heading big-head">
+                    <h1><i class="fas fa-users"></i>Add New Employee</h1>
+                    <p>
+                        If you have new Employee, You can add from here filling the form below and save it to your database.
+                    </p>
+                </div>
+                <div class="flex-item">
+
+                    <h4>No Employee ?  <i class="fas fa-user"></i></h4>
+                    
+                    <a href="{% url 'homepage' %}" class='btn'>Go Dashboard <i class="fas fa-home"></i></a>
+                </div>
+                <div class="edit">
+                 <form method="POST" action="add">
+                   {% csrf_token %}
+                   <div>
+                    {% if messages %}
+                    {% for i in messages %}
+                    {% if success %}
+                    <p class="messages"><i class="fas fa-user"></i> 
+                        {{i}}.
+                    </p>
+                    {% else %}
+                    <p class="e-messages"><i class="fas fa-info"></i> 
+                        {{i}}.
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <label for="eid"><i class="fas fa-id-card-alt"></i> ID Number:</label>
+                    <div class="eid">{{form.eid}}</div>
+                </div><div>
+                   <label for="ename"><i class="fas fa-user-circle"></i> Full Name:</label>
+                   <div class="ename">{{form.ename}}</div></div>
+                   <div>
+
+                       <label for="eemail"><i class="fas fa-calendar-alt"></i> Joined Date : <span class='i-text'> [ E.g 2020-10-20 ]</span></label>
+                       <div class="eemail">{{form.ejoin}}</div>
+                   </div><div>
+                       <label for="econtact"><i class="fas fa-address-book"></i> Contact:</label>
+                       <div class="econtact">{{form.econtact}}</div>
+                   </div><div>
+                       <label for="eage"><i class="fas fa-smile"></i>Age:</label>
+                       <div class="eage">{{form.eage}}</div>
+                   </div><br/>
+                   <div class="add-button"><button type="submit">Add Now +</button></div>
+
+               </form>
+
+           </div>
+       </div>
+   </div>
+</div>
+{% endblock %}
+

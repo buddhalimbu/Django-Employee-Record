@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="body-part">
+    <div class="content">
+        <div class="container">
+        
+
+            
+                
+            <div class="content-wrapper">   
+                <div class="search">
+<p>
+    Search Employee
+</p>
+                    <form action="{% url 'search' %}" method="GET">
+                        {% csrf_token %}
+                        <input type="text" name="q" placeholder="E.G : John Doe.." required="required" />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                {% if employee %}
+                {% if messages %}
+                {% for i in messages %}
+                    <p class="messages"><i class="fas fa-user"></i> 
+                        {{i}}. <a href="{% url 'loadform' %}">Add Another +</a>
+                    </p>
+                {% endfor %}
+                {% endif %}
+                {% if query %}
+                <div class="has_content">We found following Employee with name : <span> {{query}}.</span></div>
+                {% endif %}
+                <h3 style="margin: 10px 0;text-transform: uppercase;color: #0157d8">Employee List : </h3>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Joined</th>
+                        <th>Contact</th>
+                        <th>Age</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    {% for i in employee %}
+                    <tr>
+                        <td><b>{{ i.eid }}</b></td>
+                        <td><span class="capitalize">{{ i.ename }}</span></td>
+                        <td>{{ i.ejoin }}</td>
+                        <td>{{ i.econtact }}</td>
+                        <td>{{ i.eage }}</td>
+                        <td><a href="edit/{{ i.id }}" class="edit-e">Edit</a></td>
+                        <td><a onclick="myFunction()" class="delete-e">Delete</a><div id="myDiv" class="confirm"><p>Do you want to delete it , Please tell us.</p><div class='c-button'><a class='no-c'>Delete Now ?</a><a href="delete/{{i.id}}" class="yes-c">Yes</a></div></div></td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <div class="nocontent">Sorry, You searched for <span style="color: red">{{query}}</span> in the database but we couldn't find the any Employee with the name <b style="color: red">{{query}}</b>, If you are still unsure you can try again, Thank You !!</div>
+                    <a class='db' href="{% url 'homepage' %}">View Dashboard</a>
+                    {% endif %}
+                </table>
+                {% if employee %}
+                <div class="blog-pager" id="blog-pager">
+                    <ul>
+                        <li>
+                            <a class="showing">Showing</a>
+                        </li>
+                        {% if employee.has_previous %}
+                        <li class="prev-page">
+                            <a href="?{% if query %}q={{query}}&{% endif %}page={{employee.previous_page_number}}" class="prev-link">
+                                Previous
+                            </a>
+                        </li>
+
+                        {% endif %}
+                        <li class="current-page">
+                            <a href="?{% if query %}q={{query}}&{% endif %}page={{employee.number}}" class="prev-link">1
+                            </a>
+                        </li>  
+                        <li class="">
+                            <a href="?{% if query %}q={{query}}&{% endif %}page=2" class="prev-link">2
+                            </a>
+                        </li>  
+                        <li class="">
+                            <a href="?{% if query %}q={{query}}&{% endif %}page=3" class="prev-link">3
+                            </a>
+                        </li>      
+                        {% if employee.has_next %}               
+                        <li class="next-page">
+                            <a href="?{% if query %}q={{query}}&{% endif %}page={{employee.next_page_number}}" class="prev-link">
+                                Next
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
